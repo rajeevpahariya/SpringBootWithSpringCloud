@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rest.microservices.currencyexchangeservice.bean.ExchangeValue;
+import com.rest.microservices.currencyexchangeservice.exception.CurrencyDataNotFound;
 import com.rest.microservices.currencyexchangeservice.repository.ExchangeValueRepository;
 
 @RestController
@@ -33,8 +34,12 @@ public class CurrencyExchangeController {
 	
 	@GetMapping("/currency-exchange/from/{from}/to/{to}")
 	public ExchangeValue retrieveExchangeValueFromDB(@PathVariable String from,
-			@PathVariable String to) {
+			@PathVariable String to) throws CurrencyDataNotFound{
+		
 		ExchangeValue exchangeValue = repo.findByFromAndTo(from, to);
+		if(exchangeValue == null) {
+			throw new CurrencyDataNotFound("Curreny Data not found for: from = " + from + " and To = " + to);
+		}
 		exchangeValue.setPort(Integer.parseInt(env.getProperty("local.server.port")));
 		logger.info("{}", exchangeValue);
 		return exchangeValue;
