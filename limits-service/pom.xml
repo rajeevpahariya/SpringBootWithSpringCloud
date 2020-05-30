@@ -44,6 +44,16 @@
 	      <groupId>org.springframework.cloud</groupId>
 	      <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 	    </dependency>
+	    <!-- sleuth sue to attach unique id to each request-->
+	    <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+		<!-- For loggin the log in common path (distributed logging)-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>

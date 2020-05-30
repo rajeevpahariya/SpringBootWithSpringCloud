@@ -15,13 +15,13 @@ public class LimitsConfigurationController {
 	
 	@GetMapping("/limit")
 	public LimitConfiguration reterieveLimitsHardcoded() {
-		return new LimitConfiguration(1000, 1);
+		return new LimitConfiguration(1, 10000);
 	}
 	
 	@GetMapping("/limits")
 	public LimitConfiguration reterieveLimitsConfiguration() {
-		return new LimitConfiguration(configuration.getMaximum(),
-				configuration.getMinimum());
+		return new LimitConfiguration(configuration.getMinimum(),
+				configuration.getMaximum());
 	}
 	
 	@GetMapping("/limits-fault")
@@ -31,7 +31,7 @@ public class LimitsConfigurationController {
 	}
 	
 	public LimitConfiguration faultReterieveLimitsValue() {
-		return new LimitConfiguration(999999,
-				9);
+		return new LimitConfiguration(9,
+				999999);
 	}
 }
