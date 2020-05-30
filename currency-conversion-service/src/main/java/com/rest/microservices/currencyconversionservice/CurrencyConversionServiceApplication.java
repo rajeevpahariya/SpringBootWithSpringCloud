@@ -17,6 +17,8 @@ public class CurrencyConversionServiceApplication {
 		SpringApplication.run(CurrencyConversionServiceApplication.class, args);
 	}
 	
+	// Use to let sleuth what kind of request it will intercept.
+	// Always - means all request
 	@Bean
 	public Sampler defaultSampler() {
 		return Sampler.ALWAYS_SAMPLE;
